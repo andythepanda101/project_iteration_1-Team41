@@ -8,7 +8,7 @@
 #### Distribution of Work
 **Step 1: Please, provide here a brief description (one short paragraph) of the distribution of work across your team. You can refine this description as you carry out the project iteration.**
 
-Work will be evenly distributed between team members. We will discuss our strengths and determine if members can complete parts of the project asynchronously. Team members are responsible for understanding every part of the project. We will also determine a preffered method of communication. Options include GroupMe, Discord, and text messaging. In-person collaboration is not mandatory.
+Work will be evenly distributed between team members. We will discuss our strengths and determine if members can complete parts of the project asynchronously. Team members are responsible for understanding every part of the project. We will also determine a preferred method of communication. Options include GroupMe, Discord, and text messaging. In-person collaboration is not mandatory.
 
 ### Project Responsibilities of the Individual
 * Individually, contribute to the success of the team according to the policies and schedule agreed upon by all team members. Individually, create the opportunity for everyone in your group to succeed at being a good team member - don't do all the work yourself.
@@ -35,3 +35,4 @@ Be patient and understanding of exceptions
 **Step 3: Please enter your name. Each one of the team members should add the name through a different commit. For example, student A adds their name and commits, then student B adds their name and commits.**
 
 Jett Serie
+Andy Chen
