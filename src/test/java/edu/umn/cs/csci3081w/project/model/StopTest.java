@@ -233,4 +233,18 @@ public class StopTest {
       fail();
     }
   }
+
+  /**
+   *  Testing if the stop correctly updates the wait values for the passenger.
+   *  If it updates the correct value, it should NOT change timeOnVehicle.
+   *  Thus, isOnVehicle() should return false.
+   */
+  @Test
+  public void testStopUpdate() {
+    Passenger passenger = new Passenger(1, "Goldy");
+    Stop stop = new Stop(0, "test stop", new Position(-93.243774, 44.972392));
+    stop.addPassengers(passenger);
+    stop.update();
+    assertEquals(false, stop.getPassengers().get(0).isOnVehicle());
+  }
 }
