@@ -63,7 +63,7 @@ public class TrainTest {
     Route testRouteIn = new Route(11, "testLine", "TRAIN", "testRouteIn",
         stopsIn, distancesIn, generatorIn);
     testRouteIn.generateNewPassengers();
-    return new Train(0, testRouteOut, testRouteIn, 5, 1);
+    return new Train(0, new Line(testRouteOut, testRouteIn), 5, 1);
   }
 
   /**

@@ -6,8 +6,7 @@ public class Train extends Vehicle {
   public static final String TRAIN_VEHICLE = "TRAIN_VEHICLE";
   public static final double SPEED = 1;
   public static final int CAPACITY = 120;
-  private Route outboundRoute;
-  private Route inboundRoute;
+  private Line line;
   private double distanceRemaining;
   private Stop nextStop;
 
@@ -15,18 +14,16 @@ public class Train extends Vehicle {
    * Constructor for a train.
    *
    * @param id       train identifier
-   * @param out      outbound route
-   * @param in       inbound route
+   * @param line     a wrapper class that has routes
    * @param capacity capacity of the train
    * @param speed    speed of the train
    */
-  public Train(int id, Route out, Route in, int capacity, double speed) {
+  public Train(int id,  Line line, int capacity, double speed) {
     super(id, capacity, speed, new PassengerLoader(), new PassengerUnloader());
-    this.outboundRoute = out;
-    this.inboundRoute = in;
+    this.line = line;
     this.distanceRemaining = 0;
-    this.nextStop = out.getDestinationStop();
-    setName(out.getName() + id);
+    this.nextStop = line.getOutboundRoute().getDestinationStop();
+    setName(line.getOutboundRoute().getName() + id);
     setPosition(new Position(nextStop.getPosition().getLongitude(),
         nextStop.getPosition().getLatitude()));
   }
@@ -54,7 +51,7 @@ public class Train extends Vehicle {
   }
 
   public boolean isTripComplete() {
-    return outboundRoute.isAtEnd() && inboundRoute.isAtEnd();
+    return line.getOutboundRoute().isAtEnd() && line.getInboundRoute().isAtEnd();
   }
 
   public int loadPassenger(Passenger newPassenger) {
@@ -85,12 +82,12 @@ public class Train extends Vehicle {
     }
 
     // Get the correct route and early exit
-    Route currentRoute = outboundRoute;
-    if (outboundRoute.isAtEnd()) {
-      if (inboundRoute.isAtEnd()) {
+    Route currentRoute = line.getOutboundRoute();
+    if (line.getOutboundRoute().isAtEnd()) {
+      if (line.getInboundRoute().isAtEnd()) {
         return;
       }
-      currentRoute = inboundRoute;
+      currentRoute = line.getInboundRoute();
     }
     Stop prevStop = currentRoute.prevStop();
     Stop nextStop = currentRoute.getDestinationStop();
@@ -176,10 +173,10 @@ public class Train extends Vehicle {
 
   private Route currentRoute() {
     // Figure out if we're on the outgoing or incoming route
-    if (!outboundRoute.isAtEnd()) {
-      return outboundRoute;
+    if (!line.getOutboundRoute().isAtEnd()) {
+      return line.getOutboundRoute();
     }
-    return inboundRoute;
+    return line.getInboundRoute();
   }
 
   public Stop getNextStop() {

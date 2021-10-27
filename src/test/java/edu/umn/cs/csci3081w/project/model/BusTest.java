@@ -64,7 +64,7 @@ public class BusTest {
     Route testRouteIn = new Route(11, "testLine", "BUS", "testRouteIn",
         stopsIn, distancesIn, generatorIn);
     testRouteIn.generateNewPassengers();
-    return new Bus(0, testRouteOut, testRouteIn, 5, 1);
+    return new Bus(0, new Line(testRouteOut, testRouteIn), 5, 1);
   }
 
   /**

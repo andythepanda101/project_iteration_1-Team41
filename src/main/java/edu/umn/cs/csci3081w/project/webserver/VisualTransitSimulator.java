@@ -2,6 +2,7 @@ package edu.umn.cs.csci3081w.project.webserver;
 
 import edu.umn.cs.csci3081w.project.model.Bus;
 import edu.umn.cs.csci3081w.project.model.Counter;
+import edu.umn.cs.csci3081w.project.model.Line;
 import edu.umn.cs.csci3081w.project.model.Route;
 import edu.umn.cs.csci3081w.project.model.Train;
 import edu.umn.cs.csci3081w.project.model.Vehicle;
@@ -75,15 +76,17 @@ public class VisualTransitSimulator {
         if (outbound.getLineType().equals(Route.BUS_LINE)
             && inbound.getLineType().equals(Route.BUS_LINE)) {
           activeVehicles
-              .add(new Bus(counter.getBusIdCounterAndIncrement(), outbound.shallowCopy(),
-                  inbound.shallowCopy(), Bus.CAPACITY, Bus.SPEED));
+              .add(new Bus(counter.getBusIdCounterAndIncrement(),
+                  new Line(outbound.shallowCopy(), inbound.shallowCopy()),
+                  Bus.CAPACITY, Bus.SPEED));
           timeSinceLastVehicle.set(i, vehicleStartTimings.get(i));
           timeSinceLastVehicle.set(i, timeSinceLastVehicle.get(i) - 1);
         } else if (outbound.getLineType().equals(Route.TRAIN_LINE)
             && inbound.getLineType().equals(Route.TRAIN_LINE)) {
           activeVehicles
-              .add(new Train(counter.getTrainIdCounterAndIncrement(), outbound.shallowCopy(),
-                  inbound.shallowCopy(), Train.CAPACITY, Train.SPEED));
+              .add(new Train(counter.getTrainIdCounterAndIncrement(),
+                  new Line(outbound.shallowCopy(), inbound.shallowCopy()),
+                  Train.CAPACITY, Train.SPEED));
           timeSinceLastVehicle.set(i, vehicleStartTimings.get(i));
           timeSinceLastVehicle.set(i, timeSinceLastVehicle.get(i) - 1);
         }
