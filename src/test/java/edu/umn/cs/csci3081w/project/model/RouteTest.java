@@ -63,8 +63,8 @@ public class RouteTest {
     assertEquals("testRoute", route.getName());
     assertEquals(3, route.getStops().size());
     assertEquals(0, route.getNextStopDistance());
-    assertEquals(0, route.getDestinationStopIndex());
-    assertEquals("test stop 1", route.getDestinationStop().getName());
+    assertEquals(0, route.getNextStopIndex());
+    assertEquals("test stop 1", route.getNextStop().getName());
   }
 
   /**
@@ -158,16 +158,16 @@ public class RouteTest {
   @Test
   public void testRouteNextStop() {
     Route route = createRoute();
-    Stop stop = route.getDestinationStop();
+    Stop stop = route.getNextStop();
     assertEquals("test stop 1", stop.getName());
     route.nextStop();
-    stop = route.getDestinationStop();
+    stop = route.getNextStop();
     assertEquals("test stop 2", stop.getName());
     route.nextStop();
-    stop = route.getDestinationStop();
+    stop = route.getNextStop();
     assertEquals("test stop 3", stop.getName());
     route.nextStop();
-    stop = route.getDestinationStop();
+    stop = route.getNextStop();
     assertEquals("test stop 3", stop.getName());
   }
 
