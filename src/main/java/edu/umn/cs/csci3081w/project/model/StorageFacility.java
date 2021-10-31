@@ -25,4 +25,28 @@ public class StorageFacility {
     this.trainsNum = trainsNum;
   }
 
+  public boolean isBusAvailable() {
+    return busesNum > 0;
+  }
+
+  public boolean isTrainAvailable() {
+    return trainsNum > 0;
+  }
+
+  public void decrementBuses() {
+    busesNum--;
+  }
+
+  public void decrementTrains() {
+    trainsNum--;
+  }
+
+  public void incrementBuses() {
+    busesNum++;
+  }
+
+  public void incrementTrains() {
+    trainsNum++;
+  }
+
 }
