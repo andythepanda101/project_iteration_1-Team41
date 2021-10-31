@@ -34,13 +34,17 @@ public class GetVehiclesCommand extends SimulatorCommand {
       s.addProperty("numPassengers", currVehicle.getPassengers().size());
       s.addProperty("capacity", currVehicle.getCapacity());
       String vehicleType = "";
+      int co2Usage = 0;
       if (currVehicle instanceof Bus) {
         vehicleType = Bus.BUS_VEHICLE;
+        s.addProperty("type", vehicleType);
+        co2Usage = 2 + currVehicle.getPassengers().size() * 1;
       } else if (currVehicle instanceof Train) {
         vehicleType = Train.TRAIN_VEHICLE;
+        s.addProperty("type", vehicleType);
+        co2Usage = 5 + currVehicle.getPassengers().size() * 2;
       }
-      s.addProperty("type", vehicleType);
-      s.addProperty("co2", 0);
+      s.addProperty("co2", co2Usage);
       JsonObject jsonObject = new JsonObject();
       jsonObject.addProperty("longitude", currVehicle.getPosition().getLongitude());
       jsonObject.addProperty("latitude", currVehicle.getPosition().getLatitude());
