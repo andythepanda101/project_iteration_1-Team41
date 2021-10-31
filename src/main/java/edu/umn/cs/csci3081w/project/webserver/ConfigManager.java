@@ -89,9 +89,19 @@ public class ConfigManager {
           double currStopLatitude = Double.valueOf(splits[2].trim());
           double currStopLongitude = Double.valueOf(splits[3].trim());
           double probability = Double.valueOf(splits[4].trim());
-          probabilities.add(probability);
-          stops.add(new Stop(counter.getStopIdCounterAndIncrement(), currStopName,
-              new Position(currStopLongitude, currStopLatitude)));
+          // checks if current stop already exists in list of stops for that route
+          boolean stopAlreadyExists = false;
+          for (int stopInd = 0; stopInd < stops.size(); stopInd++){
+            if (stops.get(stopInd).getName().equals(currStopName)){
+              stopAlreadyExists = true;
+              break;
+            }
+          }
+          if (!stopAlreadyExists) {
+            probabilities.add(probability);
+            stops.add(new Stop(counter.getStopIdCounterAndIncrement(), currStopName,
+                new Position(currStopLongitude, currStopLatitude)));
+          }
         }
       }
       scanner.close();
