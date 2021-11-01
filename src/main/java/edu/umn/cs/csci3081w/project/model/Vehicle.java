@@ -4,6 +4,9 @@ import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An abstract class that represents a Vehicle in the simulation.
+ */
 public abstract class Vehicle {
   private int id;
   private int capacity;
@@ -35,14 +38,34 @@ public abstract class Vehicle {
     this.passengers = new ArrayList<Passenger>();
   }
 
+  /**
+   * Reports statistics for the vehicle.
+   * @param out stream for printing
+   */
   public abstract void report(PrintStream out);
 
+  /**
+   * Checking if the trip is done.
+   * @return true if vehicle completed the trip, false otherwise
+   *
+   */
   public abstract boolean isTripComplete();
 
+  /**
+   * Loads the passengers onto a vehicle.
+   * @param newPassenger a passenger to be loaded
+   * @return number of loaded passengers
+   */
   public abstract int loadPassenger(Passenger newPassenger);
 
+  /**
+   * Moves the vehicle.
+   */
   public abstract void move();
 
+  /**
+   * Updates the vehicle.
+   */
   public abstract void update();
 
   public int getId() {

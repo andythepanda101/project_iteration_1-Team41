@@ -10,6 +10,9 @@ import edu.umn.cs.csci3081w.project.model.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class for VTS, responsible for running the simulation.
+ */
 public class VisualTransitSimulator {
 
   private static boolean LOGGING = false;
@@ -78,18 +81,26 @@ public class VisualTransitSimulator {
         Route inbound = routes.get(2 * i + 1);
         if (outbound.getLineType().equals(Route.BUS_LINE)
             && inbound.getLineType().equals(Route.BUS_LINE)) {
-          activeVehicles
-              .add(new Bus(counter.getBusIdCounterAndIncrement(),
-                  new Line(outbound.shallowCopy(), inbound.shallowCopy()),
-                  Bus.CAPACITY, Bus.SPEED));
+          // checks if the bus is available according to storage facility
+          if (storageFacility.isBusAvailable()) {
+            activeVehicles
+                .add(new Bus(counter.getBusIdCounterAndIncrement(),
+                    new Line(outbound.shallowCopy(), inbound.shallowCopy()),
+                    Bus.CAPACITY, Bus.SPEED));
+            storageFacility.decrementBuses();
+          }
           timeSinceLastVehicle.set(i, vehicleStartTimings.get(i));
           timeSinceLastVehicle.set(i, timeSinceLastVehicle.get(i) - 1);
         } else if (outbound.getLineType().equals(Route.TRAIN_LINE)
             && inbound.getLineType().equals(Route.TRAIN_LINE)) {
-          activeVehicles
-              .add(new Train(counter.getTrainIdCounterAndIncrement(),
-                  new Line(outbound.shallowCopy(), inbound.shallowCopy()),
-                  Train.CAPACITY, Train.SPEED));
+          // checks if the train is available according to storage facility
+          if (storageFacility.isTrainAvailable()) {
+            activeVehicles
+                .add(new Train(counter.getTrainIdCounterAndIncrement(),
+                    new Line(outbound.shallowCopy(), inbound.shallowCopy()),
+                    Train.CAPACITY, Train.SPEED));
+            storageFacility.decrementTrains();
+          }
           timeSinceLastVehicle.set(i, vehicleStartTimings.get(i));
           timeSinceLastVehicle.set(i, timeSinceLastVehicle.get(i) - 1);
         }
@@ -104,6 +115,11 @@ public class VisualTransitSimulator {
       if (currVehicle.isTripComplete()) {
         Vehicle completedTripVehicle = activeVehicles.remove(i);
         completedTripVehicles.add(completedTripVehicle);
+        if (completedTripVehicle instanceof Bus) {
+          storageFacility.incrementBuses();
+        } else if (completedTripVehicle instanceof Train) {
+          storageFacility.incrementTrains();
+        }
       } else {
         if (VisualTransitSimulator.LOGGING) {
           currVehicle.report(System.out);

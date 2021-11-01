@@ -2,6 +2,9 @@ package edu.umn.cs.csci3081w.project.model;
 
 import java.util.Random;
 
+/**
+ * A class that creates individual passengers for the simulation.
+ */
 public class PassengerFactory {
   private static final String[] namePrefix;
   private static final String[] nameSuffix;

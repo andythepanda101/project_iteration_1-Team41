@@ -3,6 +3,9 @@ package edu.umn.cs.csci3081w.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * An abstract class that sets up passenger generation.
+ */
 public abstract class PassengerGenerator {
   private List<Stop> stops;
   private List<Double> probabilities;
@@ -24,6 +27,10 @@ public abstract class PassengerGenerator {
     }
   }
 
+  /**
+   * Generates passengers.
+   * @return number of generated passengers
+   */
   public abstract int generatePassengers();
 
   public List<Stop> getStops() {

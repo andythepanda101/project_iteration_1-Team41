@@ -2,6 +2,9 @@ package edu.umn.cs.csci3081w.project.model;
 
 import java.io.PrintStream;
 
+/**
+ * A class that represents a Bus in the simulation.
+ */
 public class Bus extends Vehicle {
   public static final String BUS_VEHICLE = "BUS_VEHICLE";
   public static final double SPEED = 0.5;

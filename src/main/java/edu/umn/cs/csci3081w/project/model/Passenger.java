@@ -2,6 +2,9 @@ package edu.umn.cs.csci3081w.project.model;
 
 import java.io.PrintStream;
 
+/**
+ * A class that represents a Passenger in the simulation.
+ */
 public class Passenger {
 
   private String name;
@@ -37,6 +40,10 @@ public class Passenger {
     timeOnVehicle = 1;
   }
 
+  /**
+   * Checks if Passenger is on a vehicle.
+   * @return true if Passenger spent any time on the vehicle, false otherwise
+   */
   public boolean isOnVehicle() {
     return timeOnVehicle > 0;
   }
