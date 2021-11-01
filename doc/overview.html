@@ -4,13 +4,29 @@
 </head>
 <body>
   <h1>Introduction</h1>
-  <p>Task 1 description of the VTS software.</p>
+  <p>This repository contains files necessary to run a Virtual Transit Simulator (VTS), which models the movements of passengers
+    on a public transportation system with buses and trains. It models the routes of buses and trains on the University of Minnesota Twin Cities
+    campus.</p>
+  <h3>Configuration</h3>
+  <p>To configure the VTS for a different set of routes or to add additional routes to the current model, changes should be made to /src/main/resources/config.txt.
+  Following the current syntax, a bus or train line's description is started with a line LINE_START, a string identifying it as a bus or train line, and the line's name.
+  The first line of config.txt, for example, is "LINE_START, BUS_LINE, Campus Connector", signifying that it is the start of the bus line called the Campus Connector. Transportation
+  lines are ended with a line only containing "LINE_END". Routes are defined within the start and end of lines. The first line of a route contains "ROUTE_START" and the name of the
+  route. Routes are ended with a line that has "ROUTE_END". Between the start and end of routes, stops are defined. Each line defining a stop has five elements: "STOP", the
+  name of the stop, the stop's latitude, the stop's longitude, and the probability that a passenger is generated at the stop. </p>
+  <h3>Compilation and Execution</h3>
+  <p>Compiling the code in this repository requires Grade 6.6.1, the most recent version of java, and a browser. The program has a simulator module and a visualization module. The
+  simulator is started by running "./gradlew appRun" in the highest level directory and must be started before the visualization module. Once the simulation module is running,
+  the visualization module can be run in the browser with the address "http://localhost:7777/project/web_graphics/project.html". The simulation module can be stopped by pressing enter,
+  and the visualization module can be ended by closing the browser. </p>
   <h1>UML Class Diagram for Model Classes</h1>
-  <img src="UMLModelClasses.png" alt="UML Class Diagram for Model Classes" width="800" height="400">
-  <p>Comments on the UML class diagram for model classes. </p>
-  <p> * Please right click on the image and select "Open image in new tab", as the image on this page appears to be distorted.</p>
+  <img src="diagrams/UMLModelClasses.png" alt="UML Class Diagram for Model Classes" width="800">
+  <p>The factory method pattern is used in the RandomPassengerGenerator class to create new passengers at stops. The StorageFacility class is used to determine if a bus or train can be
+  sent out. If the StorageFacility's busesNum or trainsNum variables are 0, the vehicle that they represent can not be sent out. Counter is used to produce increasingly high numbers to
+  use as unique designations for objects in the simulation.</p>
   <h1>UML Class Diagram for Webserver Classes</h1>
-  <img src="umn.jpg" alt="UML Class Diagram for Webserver Classes" width="800" height="400">
-  <p>Comments on the UML class diagram for webserver classes.</p>
+  <img src="diagrams/webserver_diagram.png" alt="UML Class Diagram for Webserver Classes" width="800">
+  <p>This closely follows the command design pattern. SimulatorCommand is the Command, GetRoutesCommand, GetVehiclesCommand, InitLinesCommand, Start Command, and UpdateCommand are
+   the ConcreteCommands, WebServerSession is the Client, WebServerSessionState is the Invoker, and VisualTransitSimulator is the Receiver.</p>
 </body>
 </html>
