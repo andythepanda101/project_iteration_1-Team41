@@ -2,10 +2,17 @@ package edu.umn.cs.csci3081w.project.webserver;
 
 import com.google.gson.JsonObject;
 
+/**
+ * A class that obtains update commands for the simulation.
+ */
 public class UpdateCommand extends SimulatorCommand {
 
   private VisualTransitSimulator simulator;
 
+  /**
+   * Constructor for update commands.
+   * @param simulator current simulation session
+   */
   public UpdateCommand(VisualTransitSimulator simulator) {
     this.simulator = simulator;
   }

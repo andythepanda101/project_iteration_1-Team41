@@ -10,6 +10,9 @@ import edu.umn.cs.csci3081w.project.model.Vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class for VTS, responsible for running the simulation.
+ */
 public class VisualTransitSimulator {
 
   private static boolean LOGGING = false;

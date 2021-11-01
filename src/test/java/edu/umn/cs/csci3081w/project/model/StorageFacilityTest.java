@@ -6,10 +6,17 @@ import edu.umn.cs.csci3081w.project.webserver.VisualTransitSimulator;
 import org.junit.jupiter.api.Test;
 
 public class StorageFacilityTest {
+  /**
+   * Create a VisualTransitSimulator to test StorageFacility.
+   * @return  VisualTransitSimulator object that creates the storage facility.
+   */
   public VisualTransitSimulator createVisualTransitSimulator() {
     return new VisualTransitSimulator("src/main/resources/config.txt");
   }
 
+  /**
+   * Check if StorageFacility object was created correctly.
+   */
   @Test
   public void testConstructorNormal() {
     VisualTransitSimulator simulator = createVisualTransitSimulator();

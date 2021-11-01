@@ -2,6 +2,9 @@ package edu.umn.cs.csci3081w.project.model;
 
 import java.util.List;
 
+/**
+ * A class that's responsible for loading passengers onto a vehicle.
+ */
 public class PassengerLoader {
 
   /**

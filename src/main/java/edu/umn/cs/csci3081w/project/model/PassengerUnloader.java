@@ -3,6 +3,9 @@ package edu.umn.cs.csci3081w.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that's responsible for unloading passengers from a vehicle.
+ */
 public class PassengerUnloader {
 
   /**

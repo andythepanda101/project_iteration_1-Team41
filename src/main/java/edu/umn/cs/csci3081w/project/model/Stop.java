@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * A class that represents a Stop in the simulation.
+ */
 public class Stop {
   private int id;
   private String name;

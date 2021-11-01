@@ -2,6 +2,9 @@ package edu.umn.cs.csci3081w.project.model;
 
 import java.io.PrintStream;
 
+/**
+ * A class that represents a Train in the simulation.
+ */
 public class Train extends Vehicle {
   public static final String TRAIN_VEHICLE = "TRAIN_VEHICLE";
   public static final double SPEED = 1;
