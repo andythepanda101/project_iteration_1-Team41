@@ -5,6 +5,7 @@ import edu.umn.cs.csci3081w.project.model.Position;
 import edu.umn.cs.csci3081w.project.model.RandomPassengerGenerator;
 import edu.umn.cs.csci3081w.project.model.Route;
 import edu.umn.cs.csci3081w.project.model.Stop;
+import edu.umn.cs.csci3081w.project.model.StorageFacility;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,8 +19,11 @@ public class ConfigManager {
   private static final String ROUTE_END = "ROUTE_END";
   private static final String BUS_LINE = "BUS_LINE";
   private static final String TRAIN_LINE = "TRAIN_LINE";
+  private static final String STORAGE_FACILITY_START = "STORAGE_FACILITY_START";
+  private static final String STORAGE_FACILITY_END = "STORAGE_FACILITY_END";
 
   private List<Route> routes = new ArrayList<Route>();
+  private StorageFacility storageFacility;
 
   public ConfigManager() {
 
@@ -92,7 +96,16 @@ public class ConfigManager {
           probabilities.add(probability);
           stops.add(new Stop(counter.getStopIdCounterAndIncrement(), currStopName,
               new Position(currStopLongitude, currStopLatitude)));
+        } else if (chunk.equals(STORAGE_FACILITY_START)) {
+          storageFacility = new StorageFacility(0, 0);
+        } else if (chunk.equals("BUSES")) {
+          int busesNum = Integer.parseInt(splits[1].trim());
+          storageFacility.setBusesNum(busesNum);
+        } else if (chunk.equals("TRAINS")) {
+          int trainsNum = Integer.parseInt(splits[1].trim());
+          storageFacility.setTrainsNum(trainsNum);
         }
+
       }
       scanner.close();
     } catch (Exception e) {
@@ -102,5 +115,9 @@ public class ConfigManager {
 
   public List<Route> getRoutes() {
     return routes;
+  }
+
+  public StorageFacility getStorageFacility() {
+    return storageFacility;
   }
 }

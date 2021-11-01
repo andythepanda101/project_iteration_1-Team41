@@ -4,6 +4,7 @@ import edu.umn.cs.csci3081w.project.model.Bus;
 import edu.umn.cs.csci3081w.project.model.Counter;
 import edu.umn.cs.csci3081w.project.model.Line;
 import edu.umn.cs.csci3081w.project.model.Route;
+import edu.umn.cs.csci3081w.project.model.StorageFacility;
 import edu.umn.cs.csci3081w.project.model.Train;
 import edu.umn.cs.csci3081w.project.model.Vehicle;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class VisualTransitSimulator {
   private List<Vehicle> completedTripVehicles;
   private List<Integer> vehicleStartTimings;
   private List<Integer> timeSinceLastVehicle;
+  private StorageFacility storageFacility;
 
   /**
    * Constructor for Simulation.
@@ -31,6 +33,7 @@ public class VisualTransitSimulator {
     ConfigManager configManager = new ConfigManager();
     configManager.readConfig(counter, configFile);
     this.routes = configManager.getRoutes();
+    this.storageFacility = configManager.getStorageFacility();
     this.activeVehicles = new ArrayList<Vehicle>();
     this.completedTripVehicles = new ArrayList<Vehicle>();
     this.vehicleStartTimings = new ArrayList<Integer>();
@@ -123,5 +126,9 @@ public class VisualTransitSimulator {
 
   public List<Vehicle> getActiveVehicles() {
     return activeVehicles;
+  }
+
+  public StorageFacility getStorageFacility() {
+    return storageFacility;
   }
 }
